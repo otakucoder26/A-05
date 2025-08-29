@@ -18,7 +18,7 @@ callBtns.forEach(btn => {
         document.getElementById('coin').innerText = newCoin;
         if ( newCoin < 0){
             document.getElementById('coin').innerText = 0;
-            return alert("X আপনার পর্যাপ্ত কয়েন নেই! কল করতে কমপক্ষে ২০-কয়েন লাগবে'।")
+            return alert(" কল করার জন্য আপনার পর্যাপ্ত কয়েন নেই! কল করার জন্য কমপক্ষে ২০টি কয়েন প্রয়োজন")
         }
         const cards = this.closest('.card');
         const childrens = cards.querySelectorAll('.child');
@@ -52,3 +52,41 @@ callBtns.forEach(btn => {
 
 });
 
+    // Clear History Section
+
+let clearBtn = document.getElementById('clear-btn')
+clearBtn.addEventListener('click', function() {
+        document.getElementById('history-container').innerHTML = '';
+      
+ });
+//    Copy Number Button
+
+
+const copyBtns = document.querySelectorAll('.copy-btn');
+copyBtns.forEach( copybtn => {
+    copybtn.addEventListener('click',function(){
+        document.getElementById('copyIcon').innerText++;
+        const cards = this.closest('.card');
+        const childNumber = cards.querySelectorAll('.number');
+        let content = '';
+
+        childNumber.forEach(child => {
+            content += child.innerText;
+        })
+        alert("নম্বরটি কপি হয়েছে:" + " "+ content);
+
+        
+        const tempInput = document.createElement("textarea");
+        tempInput.value = content;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        tempInput.setSelectionRange(0, 99999);
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+    });
+    
+});
+
+
+
+ 
